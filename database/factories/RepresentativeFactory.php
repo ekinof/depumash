@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use App\Enum\GenderEnum;
@@ -28,7 +30,7 @@ class RepresentativeFactory extends Factory
                 'external_id' => 'PA001',
                 'created_at' => '2021-01-01 00:00:00',
                 'updated_at' => '2021-01-01 00:00:00',
-            ]
+            ],
         ];
     }
 }

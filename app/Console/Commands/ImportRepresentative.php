@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Enum\GenderEnum;
@@ -8,7 +10,6 @@ use DateTime;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use ZipArchive;
-use Illuminate\Support\Facades\Storage;
 
 class ImportRepresentative extends Command
 {
@@ -49,7 +50,7 @@ class ImportRepresentative extends Command
     {
         $zip = new ZipArchive();
 
-        $zip->open(storage_path('app/representative/' . $filename));
+        $zip->open(storage_path('app/representative/'.$filename));
         $zip->extractTo(storage_path('app/representative/temp'));
         $zip->close();
     }
@@ -62,8 +63,9 @@ class ImportRepresentative extends Command
     public function readFiles(): void
     {
         $directory = storage_path('app/representative/temp/json/acteur');
-        if (!File::isDirectory($directory)) {
+        if (! File::isDirectory($directory)) {
             $this->error('No directory found, data maybe have been change, verify you zip file!');
+
             return;
         }
 
@@ -71,7 +73,7 @@ class ImportRepresentative extends Command
 
         foreach ($files as $file) {
             $jsonData = json_decode($file->getContents(), true, 512, JSON_THROW_ON_ERROR)['acteur'];
-            $this->info('Importing representative ' . $jsonData['uid']['#text']);
+            $this->info('Importing representative '.$jsonData['uid']['#text']);
             $this->importRepresentative($jsonData);
         }
     }
@@ -89,7 +91,7 @@ class ImportRepresentative extends Command
             default => GenderEnum::NON_BINARY,
         };
         $jobTitle = $jsonData['profession']['libelleCourant'];
-        $representative->job_title = is_string($jobTitle)? $jobTitle : null;
+        $representative->job_title = is_string($jobTitle) ? $jobTitle : null;
         $representative->save();
     }
 }

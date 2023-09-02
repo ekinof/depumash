@@ -21,10 +21,9 @@ return new class extends Migration
             $table->date('birthday');
             $table->enum('gender', GenderEnum::VALUES);
             $table->string('job_title')->nullable();
-            $table->string('external_id')->unique();
+            $table->string('external_id')->unique()->index();
             $table->timestamps();
             $table->softDeletes();
-            $table->index(['external_id']);
         });
     }
 

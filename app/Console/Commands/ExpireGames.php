@@ -45,13 +45,16 @@ class ExpireGames extends Command implements TransactionalCommand
 
     private function runQuery(): void
     {
-        $status = GameStatusEnum::EXPIRED->value;
+        $status = GameStatusEnum::CREATED->value;
+        $newStatus = GameStatusEnum::EXPIRED->value;
 
         DB::update(
             <<<SQL
                 UPDATE game
-                SET deleted_at = now(), updated_at = now(), status = '{$status}'
-                WHERE created_at < '{$this->expirationDate->toDateTimeString()}' AND deleted_at IS NULL
+                SET deleted_at = now(), updated_at = now(), status = '{$newStatus}'
+                WHERE created_at < '{$this->expirationDate->toDateTimeString()}'
+                AND status = '{$status}'
+                AND deleted_at IS NULL
             SQL
         );
     }

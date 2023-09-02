@@ -18,7 +18,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('first_representative_id')->constrained('representative');
             $table->foreignUuid('second_representative_id')->constrained('representative');
-            $table->foreignUuid('winner_representative_id')->nullable()->constrained('representative');
+            $table->foreignUuid('winner_representative_id')->nullable()->index()->constrained('representative');
             $table->enum('status', GameStatusEnum::VALUES);
             $table->timestamps();
             $table->softDeletes();

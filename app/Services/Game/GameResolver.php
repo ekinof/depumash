@@ -20,6 +20,10 @@ class GameResolver
 
     public function resolve(Game $game, string $winnerId): void
     {
+        if (GameStatusEnum::CREATED !== $game->status) {
+            abort(400, 'Game already played or removed');
+        }
+
         $winner = null;
         $loser = null;
         switch ($winnerId) {

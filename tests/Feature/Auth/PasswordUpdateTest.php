@@ -36,7 +36,5 @@ test('correct password must be provided to update password', function () {
             'password_confirmation' => 'new-password',
         ]);
 
-    $response
-        ->assertSessionHasErrors('current_password')
-        ->assertRedirect('/profile');
+    $response->assertJsonValidationErrors('current_password');
 });

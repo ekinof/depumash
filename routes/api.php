@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\Resources\GameController;
+use App\Http\Controllers\GameController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/game', [GameController::class, 'getGame'])->name('game.get');
+Route::controller(GameController::class)->group(function () {
+    Route::post('/game', 'postGame')->name('game.post');
+    Route::put('/game/{game}', 'putGame')->name('game.put');
+});

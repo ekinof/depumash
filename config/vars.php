@@ -15,6 +15,7 @@ return [
 
     'elo' => [
         'k_factor' => 24,
+        'default_score' => 1000,
     ],
 
 ];

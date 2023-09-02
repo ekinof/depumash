@@ -24,7 +24,7 @@ class ComputeRanking
         $looser->elo->save();
     }
 
-    private function computeElo($elo1, $elo2, $score): int
+    private function computeElo($elo1, $elo2, $score): float
     {
         return $elo1 + ($this->kFactor * ($score - $this->getExpectedScore($elo1, $elo2)));
     }

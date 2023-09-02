@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @mixin Eloquent
  *
  * @property string $id
- * @property int $score
+ * @property float $score
  * @property string $representative_id
  * @property DateTime $created_at
  * @property DateTime $updated_at

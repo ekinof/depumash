@@ -55,6 +55,7 @@ class Representative extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'external_id',
     ];
 
     public function elo(): HasOne

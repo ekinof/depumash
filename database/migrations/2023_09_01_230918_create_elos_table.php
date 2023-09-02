@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('elo', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->integer('score')->default(500);
+            $table->float(column: 'score');
             $table->foreignUuid('representative_id')->constrained('representative');
             $table->timestamps();
         });

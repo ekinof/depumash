@@ -32,7 +32,7 @@ class RemoveGames extends Command
     public function handle()
     {
         $this->info('Removing games...');
-        $this->removeTime = Carbon::now()->subHours($this->argument('time'));
+        $this->removeTime = Carbon::now()->subHours((int) $this->argument('time'));
 
         $this->runQuery();
         $this->info('Games removed!');

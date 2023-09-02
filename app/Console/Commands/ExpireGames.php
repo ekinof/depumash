@@ -37,7 +37,7 @@ class ExpireGames extends Command implements TransactionalCommand
     public function handle()
     {
         $this->info('Expiring games...');
-        $this->expirationDate = (new Carbon())->subSeconds($this->argument('time'));
+        $this->expirationDate = (new Carbon())->subSeconds((int) $this->argument('time'));
 
         $this->handleTransaction();
         $this->info('Games expired successfully');

@@ -10,10 +10,4 @@ export default defineConfig({
         }),
         react(),
     ],
-    resolve: {
-        alias:{
-            screens: '/src/screens',
-            components: '/src/components',
-        }
-    }
 });

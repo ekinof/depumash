@@ -38,7 +38,7 @@ jobs:
         run: composer install -n --prefer-dist
 
       - name: Run npm install
-        run: npm install && npm run dev
+        run: npm install && npm run build
 
       - name: Prepare Laravel Application
         run: |

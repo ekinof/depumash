@@ -34,6 +34,11 @@ class Elo extends Model
 
     protected $keyType = 'string';
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function representative(): BelongsTo
     {
         return $this->belongsTo(Representative::class);

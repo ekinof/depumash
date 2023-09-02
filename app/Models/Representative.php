@@ -51,6 +51,12 @@ class Representative extends Model
         'deleted_at' => 'datetime',
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+        'deleted_at',
+    ];
+
     public function elo(): HasOne
     {
         return $this->hasOne(Elo::class);
